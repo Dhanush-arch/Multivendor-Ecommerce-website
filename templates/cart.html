@@ -1,0 +1,177 @@
+
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+   
+<!-- Mirrored from veepixel.com/tf/html/d-shine/cart.html by HTTrack Website Copier/3.x [XR&CO'2014], Tue, 08 Sep 2020 07:48:47 GMT -->
+<head>
+      <meta charset="UTF-8">
+      <meta http-equiv="X-UA-Compatible" content="IE=edge">
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+      <title>D-Shine- Jewellery, Diamond Business/shop Template</title>
+      <!--Favicons-->
+      <link rel="icon" type="image/png" sizes="32x32" href="favicon/favicon-32x32.png">
+      <link rel="manifest" href="http://www.veepixel.com/tf/html/d-shine/favicon/manifest.json">
+      <meta name="msapplication-TileColor" content="#ffffff">
+      <meta name="theme-color" content="#ffffff">
+      <!--Bootstrap and Other Vendors-->
+         {% include 'nav.html' %}
+
+         <link rel="stylesheet" href="{% static 'table.css' %}">
+      <!--Header-->
+      <section id="breadcrumbRow" class="row">
+         <h2>cart</h2>
+         <div class="row pageTitle m0">
+            <div class="container">
+               <h4 class="fleft">cart</h4>
+               <ul class="breadcrumb fright">
+                  <li><a href="index.html">home</a></li>
+                  <li class="active">cart</li>
+               </ul>
+            </div>
+         </div>
+      </section>
+       {% if messages %}
+                    {% for message in messages %}
+                    {% if message.tags == "error" %}
+                      <div class="alert alert-danger alert-dismissible mx-auto" role="alert">
+                    {% else %}
+                      <div class=" alert alert-{{message.tags}} alert-dismissible mx-auto" role="alert">
+                    {% endif %}
+                      <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                      </button>
+                      {{ message }}
+                    </div>
+                    {% endfor %}
+                {% endif %}
+
+      {% if object.items.all %}
+<<!-- h2 style="align-items: center;justify-content: center;text-align: center;">Shopping Cart</h2> -->
+      <table id="content-table3" class="table-responsive-full sort-table container" style="padding:1em;">
+  <thead>
+    <tr>
+      <th style="text-align: center;" class="title">PRODUCT IMAGE</th>
+      <th style="text-align: center;" class="title">PRODUCT NAME</th>
+      <th style="text-align: center;" class="composer">PRICE</th>
+      <th style="text-align: center;" class="lyrics">QUANTITY</th>
+      <th style="text-align: center;" class="set">TOTAL</th>
+      <th style="text-align: center;" class="arranger">REMOVE</th>
+      <!-- <th class="arranger">Arranger / Editing</th> -->
+    </tr>
+  </thead>
+  <tbody>
+     {% for order_item in object.items.all %}
+    <tr>
+      <td data-label="Title" class="title"><img width="150px" height="auto" src="{{ order_item.item.productId.image.url }}"></td>
+      <td data-label="composer productName" class="composer">
+        <h6 class="heading">{{ order_item.item.productId.title }}</h6>
+            <div class="row descList m0">
+                <dl class="dl-horizontal">
+              <dt>product code :</dt>
+              <dd>Xuo15</dd>
+              {% for i in order_item.item.variations.all %}
+              <dt>{{i.variationCategory}}</dt>
+              <dd>{{i.variationValue}}</dd>
+              {% endfor %}
+           </dl>
+          </div>
+      </td>
+      <td style="text-align: center;" data-label="Lyrics" class="lyrics">{%if order_item.price %}
+                {{order_item.price}}
+              {% else %}
+              {{ order_item.item.price }}
+              {% endif %}</td>
+      <td data-label="Set" class="set" style="text-align: center;">
+           <div style="font-weight: normal;color:black;" class="product-quantity">
+
+    {% if order_item.item.variations.all %}
+    {% for i in order_item.item.variations.all %}
+        <a href="{% url 'core:remove-single-item-from-cart' order_item.item.id i.variationValue %}"><i class="fa fa-minus mr-3"></i></a>
+    {% endfor %}
+    {% else %}
+        <a href="{% url 'core:remove-single-item-from-cart' order_item.item.id 0 %}"><i class="fa fa-minus mr-3"></i></a>
+    {% endif %}
+        {{ order_item.quantity }}
+    {% if order_item.item.variations.all %}
+		{% for i in order_item.item.variations.all %}
+      <a href="{% url 'core:add-to-cart' order_item.item.id 1 i.variationValue %}" ><i class="fa fa-plus ml-3"></i></a>
+		{% endfor %}
+    {% else %}
+      <a href="{% url 'core:add-to-cart' order_item.item.id 1 0 %}" ><i class="fa fa-plus ml-3"></i></a>
+    {% endif %}
+      </div>
+      </td>
+      <td style="text-align: center;" data-label="Arranger">{% if order_item.item.discount_price %}
+                  ${{ order_item.get_total_discount_item_price}}
+                  <span class="badge badge-primary">  Saving ${{ order_item.get_amount_saved }}</span>
+              {% else %}
+                  ${{ order_item.get_total_item_price}}
+              {% endif %}</td>
+      <td data-label="decision" class="set" style="text-align: center;">
+        {% if order_item.item.variations.all %}
+        {% for i in order_item.item.variations.all %}
+        <a href={% url "core:remove-from-cart"  order_item.item.id %} class="cancle"><i class="fa fa-trash" aria-hidden="true"></i></a>
+        {% endfor %}
+        {% else %}
+        <a href={% url "core:remove-from-cart"  order_item.item.id %} class="cancle"><i class="fa fa-trash" aria-hidden="true"></i></a>
+        {% endif %}
+      </td>
+    </tr>
+{% endfor %}    
+  </tbody>
+</table>
+
+
+         <!-- <div class="container">
+               <div class="row m0">
+                  <div class="col-lg-6 col-sm-12 continue">
+                     <a href="#" class="acart">Continue Shopping</a>
+                  </div>
+                  <div class="col-lg-6 col-sm-12 clear">
+                     <a href="#" class="acart">Clear Cart</a>
+                  </div>
+               </div>
+         </div> -->
+    
+
+<section class="row contentRowPad" style="margin-top: -70px;">
+         <div class="container">
+               <div class="table-responsive cartTable row m0">
+                  
+               </div>
+               <div class="row m0">
+                  <div class="col-sm-4 continue">
+                      <a href={% url "core:menu_view" 0 %} class="acart">Continue Shopping</a>
+                  </div>
+                  <div class="col-sm-4 clear">
+                      <a href={% url "core:clear_cart" %} class="acart">Clear Cart</a>
+                  </div>
+                  <div class="col-sm-4 total">
+                     <div class="row m0 totalCheckout">
+                        <div class="descList row m0">
+                           <dl class="dl-horizontal">
+                              <dt>Subtotal</dt>
+                              <dd>{% if object.get_total %}
+                                        Rs.{{ object.get_total }}
+                                      {% endif %}</dd>
+                              <dt class="gt">Grand Total</dt>
+                              <dd>{% if object.get_total %}
+                                        Rs.{{ object.totalPrice }}
+                                      {% endif %}</dd>
+                           </dl>
+                        </div>
+                        <a href={% url "core:checkout" %} class="acart">Proceed to Checkout</a>
+                     </div>
+                  </div>
+            </div>
+         </div>
+      </section>
+      {% else %}
+      <h1 style="text-align: center;">You Don't Have Active Orders</h1>
+      {% endif %}
+ {% include 'footer.html' %}
+   </body>
+
+</html>
+

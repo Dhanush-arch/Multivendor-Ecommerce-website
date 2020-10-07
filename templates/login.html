@@ -1,0 +1,65 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+      <meta charset="UTF-8">
+      <meta http-equiv="X-UA-Compatible" content="IE=edge">
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+      <title>D-Shine- Jewellery, Diamond Business/shop Template</title>
+     {% include 'nav.html' %}
+
+
+     <section id="contactRow" class="row contentRowPad">
+        <div class="container">
+            <div class="row">
+              <div class="col-sm-3"></div>
+                <div class="col-sm-6">
+                    <div class="row m0" style="text-align: center;">
+                        <h4 class="contactHeading heading" style="font-weight: bold;color: black;font-size: 25px;">Login Form</h4>
+                    </div>
+
+                     {% if messages %}
+                    {% for message in messages %}
+                    {% if message.tags == "error" %}
+                      <div class="alert alert-danger alert-dismissible mx-auto" role="alert">
+                    {% else %}
+                      <div class=" alert alert-{{message.tags}} alert-dismissible mx-auto" role="alert">
+                    {% endif %}
+                      <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                      </button>
+                      {{ message }}
+                    </div>
+                    {% endfor %}
+                {% endif %}
+
+                    <div class="row m0 contactForm">
+                        <form class="row m0" id="contactForm" method="post" name="contact" action="/login">
+                          {% csrf_token %}
+
+                            <div class="row m0">
+                                <label for="email" style="font-weight: bold;color: black;font-size: 25px;">Email </label>
+                                <input type="email" class="form-control" name="email" id="email">
+                            </div>
+                            <div class="row m0">
+                                <label for="password" style="font-weight: bold;color: black;font-size: 25px;">Password</label>
+                                <input type="password" class="form-control" name="password" id="password">
+                            </div>
+                           <p><a style="padding-bottom: 40px;" href="/accounts/password/reset/">Forgot Password ? <br></a></p>
+
+                            <button class="btn btn-primary btn-lg filled" type="submit">Login</button><br>
+                            <p><br>New to website? <a href={% url "core:register_page" %}>Register Here.</a> </p>
+                        </form>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+{% include 'footer.html' %}
+   </body>
+
+</html>

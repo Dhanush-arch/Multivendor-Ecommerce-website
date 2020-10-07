@@ -1,0 +1,91 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>D-Shine- Jewellery, Diamond Business/shop Template</title>
+
+    <!--Favicons-->
+  {% include 'nav.html' %}
+
+    <section id="breadcrumbRow" class="row">
+        <h2>{% if is_collection %}
+                {{title}} Collections
+            {% elif is_category %}
+                {{title}}
+            {% elif is_all %}
+                {{title}}
+            {% endif %}
+        </h2>
+        <div class="row pageTitle m0">
+            <div class="container">
+                <h4 class="fleft">product page</h4>
+                <ul class="breadcrumb fright">
+                    <li><a href="index.html">home</a></li>
+                    <li class="active">
+                        {% if is_collection %}
+                            {{title}} Collections
+                        {% elif is_category %}
+                            {{title}}
+                        {% elif is_all %}
+                            {{title}}
+                        {% endif %}
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <section class="row contentRowPad greybg">
+        <div class="container">
+            <div class="row">
+                 {% if messages %}
+                    {% for message in messages %}
+                    {% if message.tags == "error" %}
+                      <div class="alert alert-danger alert-dismissible mx-auto" role="alert">
+                    {% else %}
+                      <div class=" alert alert-{{message.tags}} alert-dismissible mx-auto" role="alert">
+                    {% endif %}
+                      <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                      </button>
+                      {{ message }}
+                    </div>
+                    {% endfor %}
+                {% endif %}
+
+              {% for item in items %}
+                <a href={% url "core:product" item.slug %}>
+                <div class="col-sm-4 product2">
+                    <div class="row m0 thumbnail">
+                        <div class="row m0 imgHov">
+                            <img src="{{item.image.url}}" alt="">
+                        </div>
+                        <div class="row m0 productIntro">
+                            <h5 class="heading"><a href="single-product.html">{{item.title}}</a>
+                            <span>
+                              {% if item.discount_price %}
+                                <del>Rs.{{ item.price }}</del>
+                                 Rs.{{ item.discount_price }}
+                              {% else %}
+                                 Rs.{{item.price}}
+                              {% endif %}
+                            </span></h5>
+                            <h5 class="proCat">Ring</h5>
+                            <a href={% url "core:add-pri-to-wish" item.slug 1 %} class="fleft acart"><i class="fas fa-shopping-cart"></i> Add to Wish List</a>
+                        </div>
+                    </div>
+                </div></a>
+                {% endfor %}
+            </div>
+        </div>
+    </section>
+
+  {% include 'footer.html' %}
+</body>
+
+
+</html>

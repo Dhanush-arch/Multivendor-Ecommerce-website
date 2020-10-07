@@ -1,0 +1,208 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>D-Shine- Jewellery, Diamond Business/shop Template</title>
+    {% include 'nav.html' %}
+    <style type="text/css">
+        th, td{
+            text-align: center;
+        }
+
+    #id_payment_option{
+    list-style: none;
+    color: grey;
+    font-size: 1.4em;
+    }
+    </style>
+
+    <section id="breadcrumbRow" class="row">
+        <h2>checkout</h2>
+        <div class="row pageTitle m0">
+            <div class="container">
+                <h4 class="fleft">checkout</h4>
+                <ul class="breadcrumb fright">
+                    <li><a href="index.html">home</a></li>
+                    <li class="active">checkout</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+    <section class="row contentRowPad">
+        <div class="container">
+            <div class="row">
+
+                <div class="col-sm-8 orderSummaryRow">
+                    <div class="row orderSummary m0">
+                        <h4 class="heading">Order summary</h4>
+                        <div class="row m0 orderSummaryInner table-responsive">
+                            <table class="table table-condensed">
+                                <thead>
+                                    <tr>
+                                        <th></th>
+                                        <th>Products</th>
+                                        <th>Price</th>
+                                        <th>Quantity</th>
+                                        <th>Total</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                {% for order_item in order.items.all %}
+                                    <tr>
+                                        <td><img src="{{ order_item.item.productId.image.url }}" width="100px" height="auto"></td>
+                                        <td>{{ order_item.item.productId.title }}{% for i in order_item.item.variations.all %}
+              <li style="list-style-type:disc;">{{i.variationCategory}} - {{i.variationValue}}</li>
+              {% endfor %}</td>
+                                        <td>{%if order_item.price %}
+                {{order_item.price}}
+              {% else %}
+              {{ order_item.item.price }}
+              {% endif %}</td>
+                                        <td>{{ order_item.quantity }}</td>
+                                        <td>{% if order_item.item.discount_price %}
+                  ${{ order_item.get_total_discount_item_price}}
+                  <span class="badge badge-primary">  Saving ${{ order_item.get_amount_saved }}</span>
+              {% else %}
+                  ${{ order_item.get_total_item_price}}
+              {% endif %}</td>
+                                    </tr>
+                                  {% endfor %}
+
+                                </tbody>
+                                <tfoot>
+                                    <tr>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td>cart subtotal</td>
+                                        <td>{% if order.get_total %}
+                                        Rs.{{ order.get_total }}
+                                      {% endif %}</td>
+                                    </tr>
+                                    <tr>
+                                         <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td>shipping</td>
+                                        <td>Free Shipping</td>
+                                    </tr>
+                                    <tr>
+                                         <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td>order total price</td>
+                                        <td>{% if order.get_total %}
+                                        Rs.{{ order.totalPrice }}
+                                      {% endif %}</td>
+                                    </tr>
+                                </tfoot>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {% if order_id %}
+                  <form action={% url 'core:payment_status' %} method="POST">
+                    {% csrf_token %}
+                    <script    src="https://checkout.razorpay.com/v1/checkout.js"
+                   data-key="rzp_test_mp6FNCpzegnAZh"
+                   data-amount="{{ price }}"
+                   data-currency="INR"
+                   data-order_id="{{ order_id }}"
+                   data-buttontext="Pay with Razorpay"
+                   data-name="Acme Corp"
+                   data-description="Test transaction"
+                   data-image="https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcRpWzPOB8s9WRX7JXZ96x1oPESu-eoN5YUFfDKcebTKFn7piPBS&usqp=CAU"
+                   data-prefill.name="{{ name }}"
+                   data-prefill.email="{{ email }}"
+                   data-prefill.contact="{{ phone }}"
+                   data-theme.color="#F37254"></script>
+                <input type="hidden" custom="Hidden Element" name="hidden">
+            </form>
+            {% else %}
+            <form  action={% url "core:checkout" %} method="post" role="form" class="row checkoutForm">
+              {% csrf_token %}
+                <div class="row m0">
+                   <!--  <div class="col-sm-3"></div> -->
+                    <div class="col-sm-8" id="billingAddress">
+                        <h4 class="heading text-center">Billing Address</h4>
+
+                        <div class="row">
+                            <div class="col-sm-6">
+                                <input type="text" name="firstName" id="firstName" placeholder="First Name" class="form-control">
+                            </div>
+                            <div class="col-sm-6">
+                                <input type="text" name="lastName" id="lastName" placeholder="Last Name" class="form-control">
+                            </div>
+                        </div>
+                        <input type="text" name="email" id="email" placeholder="E-mail" class="form-control">
+                        <input type="text" name="cnumber" id="cnumber" placeholder="Contact Number" class="form-control">
+                        <input type="text" name="apartment_address" id="address" placeholder="Address" class="form-control">
+                        <input type="text" name="street_address" id="saddress" placeholder="Street Address" class="form-control">
+                        <input type="text" name="saddress1" id="saddress1" placeholder="Street Address 1(Optional)" class="form-control">
+                        <div class="row">
+                            <div class="col-sm-6">
+                                <input type="text" name="City" id="City" placeholder="City" class="form-control">
+                            </div>
+                            <div class="col-sm-6">
+                                <input type="text" name="state" id="state" placeholder="State" class="form-control">
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-6">
+                                <input type="text" name="zip" id="zipcode" placeholder="Postcode / ZIP" class="form-control">
+                            </div>
+
+                        </div>
+
+
+                    </div>
+                </div>
+
+                <div class="row m0 paymentMethodMode">
+                    <div class="col-sm-12">
+                        <h4 class="heading">select payment mode</h4>
+                       <!--  <div class="row m0 input-group" name="payment_option">
+                            <label>
+                                <input type="radio" name="payment_option1" id="directBank"> Direct Bank Transfer <br> <p class="m0">Make your payment directly into our bank account. Please use your Order ID as the payment reference. Your order wont be shipped until
+the funds have cleared in our account.</p>
+                            </label>
+                            <label>
+                                <input type="radio" name="payment_option2" id="cheque"> Cheque Payment
+                            </label>
+                            <label>
+                                <input type="radio" name="payment_option3" id="paypal"> Paypal <img src="{% static 'images/card.png' %}" alt="">
+                            </label>
+                        </div> -->
+                       <!--  <div class="custom-control custom-radio " style="display: flex;color: grey; font-size: 1.4em; ">
+                          <input type="radio" id="customRadio1" name="customRadio" class="custom-control-input">
+                          <label class="custom-control-label" for="customRadio1" style="color: grey; margin: -5px 10px 10px 10px;">InstaMojo</label>
+                        </div>
+                        <div class="custom-control custom-radio"style="display: flex;color: grey; font-size: 1.4em; ">
+                          <input type="radio" id="customRadio2" name="customRadio" class="custom-control-input">
+                          <label class="custom-control-label"  style="color: grey; margin: -5px 10px 10px 10px;" for="customRadio2">RazorPay</label>
+                        </div>
+                         <div class="custom-control custom-radio" style="display: flex;color: grey; font-size: 1.4em;">
+                          <input type="radio" id="customRadio3" name="customRadio" class="custom-control-input">
+                          <label class="custom-control-label"  style="color: grey; margin: -5px 10px 10px 10px;" for="customRadio3">COD</label>
+                        </div> -->
+                        {{form.payment_option}}
+                    </div>
+                </div>
+
+                <div class="row m0">
+                    <div class="col-sm-12">
+                        <button class="btn btn-primary filled btn-sm" type="submit">submit</button>
+                    </div>
+                </div>
+            </form>
+            {% endif %}
+        </div>
+    </section>
+ {% include 'footer.html' %}
+</html>

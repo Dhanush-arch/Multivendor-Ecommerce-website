@@ -1,0 +1,235 @@
+{% load static %}
+{% load cart_template_tags %}
+<!--Favicons-->
+      <link rel="icon" type="image/png" sizes="32x32" href="{% static 'favicon/favicon-32x32.png' %}">
+
+      <meta name="msapplication-TileColor" content="#ffffff">
+      <meta name="theme-color" content="#ffffff">
+      <!--Bootstrap and Other Vendors-->
+
+      <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
+      <link rel="stylesheet" href="{% static 'css/bootstrap-theme.min.css' %}">
+      <link rel="stylesheet" href="{% static 'css/fontawesome-all.min.css' %}">
+      <link rel="stylesheet" href="{% static 'vendors/owl.carousel/css/owl.carousel.min.css' %}">
+
+      <link rel="stylesheet" type="text/css" href="{% static 'vendors/flexslider/flexslider.css' %}" media="screen" />
+      <link href="https://fonts.googleapis.com/css?family=PT+Sans:400,700" rel="stylesheet">
+      <link href="https://fonts.googleapis.com/css?family=Questrial" rel="stylesheet">
+      <!--Mechanic Styles-->
+      <link rel="stylesheet" href="{% static 'css/style.css' %}">
+       <link rel="stylesheet" href="{% static 'css/responsive.css' %}">
+
+        <link href="https://fonts.googleapis.com/css?family=Roboto+Condensed:700|Roboto:300,400,400i,700" rel="stylesheet">
+<script src="https://use.fontawesome.com/47886b77a3.js"></script><link rel="stylesheet" href="table.css">
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+      <style type="text/css">
+         .offers_navbtn.mcart{
+            border: 2px solid #fd405e;
+            border-radius: 30px;
+            padding: 10px;
+            font-size: 10px;
+            display: none;
+         }
+
+         .offers_navbtn.dcart{
+            display: block;
+         }
+
+@media (max-width: 767px){
+   .offers_navbtn.dcart{
+            display: none;
+         }
+   .offers_navbtn.mcart{
+      display: block;
+   }
+}
+
+.acart{
+            border: 2px solid #fd405e;
+            background-color: white;
+            color: #fd405e;
+            padding: 10px 20px;
+        }
+        .acart:hover{
+            background-color: #fd405e;
+            color: white;
+            padding: 10px 20px;
+        }
+
+      </style>
+
+    <style type="text/css">
+        th, td{
+            text-align: center;
+        }
+    </style>
+
+   </head>
+   <body>
+      <a href="#" id="back-to-top" title="Back to top">&uarr;</a>
+   <header class="row" id="header">
+         <div class="row m0 logo_line">
+            <div class="container">
+               <div class="row">
+                  <div class="col-sm-5 logo">
+                     <a href={% url "core:home" %} class="logo_a"><img src="{% static 'images/dshine-logo.png' %}" alt="D-shine">
+                     </a>
+                  </div>
+                  <div class="col-sm-7 searchSec">
+                     <div class="col-sm-12">
+                        <div class="fright wishlistCompare">
+                           <ul class="nav">
+
+
+                           </ul>
+                        </div>
+                     </div>
+                     <div class="col-sm-12">
+                        <div class="fright searchForm">
+                           <form action="#" method="get">
+                              <div class="input-group">
+
+                     <p class="offers_navbtn mcart" ><a href="cart.html"><i class="fas fa-shopping-cart"></i>CART</a></p>
+                              </div>
+                           </form>
+                        </div>
+                     </div>
+                  </div>
+               </div>
+            </div>
+         </div>
+         <nav class="navbar navbar-default m0 navbar-static-top">
+            <div class="container-fluid container">
+               <!-- Brand and toggle get grouped for better mobile display -->
+               <div class="navbar-header">
+                  <button style="float: right;" type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#mainNav">
+                  <i class="fas fa-bars"></i> MENU
+                  </button>
+               </div>
+               <!-- Collect the nav links, forms, and other content for toggling -->
+               <div class="collapse navbar-collapse" id="mainNav">
+                  <ul class="nav navbar-nav">
+                     <li class="dropdown">
+                        <a href={% url "core:home" %}  class="dropdown-toggle" role="button" aria-expanded="false">Home</a>
+
+                     </li>
+                     <!-- <li><a href="about.html">About</a></li>
+                     <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Pages</a>
+                        <ul class="dropdown-menu" role="menu">
+                           <li><a href="blog.html">Blog</a></li>
+                           <li><a href="single-post.html">Single Post</a></li>
+                           <li><a href="shortcodes.html">Shortcodes</a></li>
+                           <li><a href="innerpage-dark.html">Inner Page Dark</a></li>
+                           <li><a href="404.html">404</a></li>
+                        </ul>
+                     </li> -->
+                     <li class="dropdown megaMenu">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Categories</a>
+                        <ul class="dropdown-menu row m0" role="menu">
+                           <!-- <li class="listMenu">
+                              <div class="row listTitle">Jewelery &amp; sectionals</div>
+                              <ul class="nav megaInnerMenu">
+                                 <li><a href="#">wedding ring</a></li>
+                                 <li><a href="#">pendant</a></li>
+                                 <li><a href="#">nosering</a></li>
+                                 <li><a href="#">necklace</a></li>
+                                 <li><a href="#">medallion</a></li>
+                                 <li><a href="#">engagement ring</a></li>
+                                 <li><a href="#">costume jewellery</a></li>
+                                 <li><a href="#">brooch</a></li>
+                                 <li><a href="#">signet ring</a></li>
+                              </ul>
+                           </li> -->
+                           <li class="listMenu">
+                              <div class="row listTitle">shop by collections</div>
+                              <ul class="nav megaInnerMenu">
+                                  {% for item in collection %}
+                                 <li><a href={% url "core:menu_view_collections" item.title %}>{{item.title}}</a></li>
+                                 {% endfor %}
+                              </ul>
+                           </li>
+                           <li class="boxMenu">
+                              <div class="row listTitle">
+                                 shop by categories <a href={% url "core:menu_view" 0 %}>shop all <i class="fas fa-caret-right"></i></a>
+                              </div>
+                              <ul class="nav megaInnerMenu row m0">
+                                 {% for item in category %}
+                                 <li>
+                                    <a href={% url "core:menu_view" item.title %}>
+                                       <div class="row m0 imgHov">
+                                          <img src={{ item.image.url }} alt="">
+                                          <div class="row m0 hovCnt">
+                                             <div class="row m0 hovCntInner">
+                                                shop now <i class="fas fa-caret-right"></i>
+                                             </div>
+                                          </div>
+                                       </div>
+                                       <div class="row m0 menuTitle">{{item.title}}</div>
+                                    </a>
+                                 </li>
+                                 {% endfor %}
+                                 
+                              </ul>
+                           </li>
+                        </ul>
+                     </li>
+
+                     <!-- <li><a href="#">Necklaces</a></li>
+                     <li><a href="blog.html">Blog</a></li> -->
+                     {% if request.user.is_authenticated %}
+                     <li><a href="/orders">My Orders</a></li>
+                     <li><a href={% url "core:logout_view" %}>Logout</a></li>
+                     <li><a href={% url "core:wish-summary" %}>
+                        Wish List<span class='badge badge-warning' id='lblCartCount'>{{request.user|wish_item_count}}</span></a></li>
+                     {% else %}
+                     <li><a href="/login">Login</a></li>
+                     <li><a href="/register">Register</a></li>
+                     {% endif %}
+                     {% if request.user.is_staff %}
+                     <li><a href={% url "core:adminOrders_View" %}>Admin Orders
+                        <span class='badge badge-warning' id='lblCartCount'>{{request.user|admin_item_count}}</span>
+                     </a></li>
+                     {% endif %}
+                     <li><a href={% url "core:contact-us" %}>Contact Us</a></li>
+                     <li class="offers_navbtn dcart"><a href={% url "core:order-summary" %}><i class="fas fa-shopping-cart"></i>Cart<span class='badge badge-warning' id='lblCartCount' style="margin-left: 5px;">{{request.user|cart_item_count}}</span></a></li>
+                  </ul>
+               </div>
+<style>
+.badge {
+  padding-left: 9px;
+  padding-right: 9px;
+  -webkit-border-radius: 9px;
+  -moz-border-radius: 9px;
+  border-radius: 9px;
+}
+
+.label-warning[href],
+.badge-warning[href] {
+  background-color: #c67605;
+}
+#lblCartCount {
+    font-size: 12px;
+    background: #FF405E;
+    <!-- color: #fff; -->
+    padding: 0 5px;
+    vertical-align: top;
+    margin-left: -10px;
+}
+      </style>
+                <!-- <div class="h_cart">
+                                 <a href="cart.html">
+                                 <span class="wish">
+                                 <i class="fas fa-shopping-cart"></i>
+                                 2
+                                 </span>
+                                 <span>My cart</span>
+                                 </a>
+                              </div> -->
+               <!-- /.navbar-collapse -->
+            </div>
+            <!-- /.container-fluid -->
+         </nav>
+      </header> <!--Header-->
+      <!--Header-->

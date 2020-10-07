@@ -1,0 +1,475 @@
+{% load static %}
+{% load cart_template_tags %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>D-Shine- Jewellery, Diamond Business/shop Template</title>
+
+
+ {% include 'nav.html' %}
+
+
+     <style type="text/css">
+
+        .offers_navbtn.mcart{
+            border: 2px solid #fd405e;
+            border-radius: 30px;
+            padding: 10px;
+            font-size: 10px;
+            display: none;
+         }
+
+         .offers_navbtn.dcart{
+            display: block;
+         }
+
+@media (max-width: 767px){
+   .offers_navbtn.dcart{
+            display: none;
+         }
+   .offers_navbtn.mcart{
+      display: block;
+   }
+}
+
+
+        .acart{
+            border: 2px solid #fd405e;
+            background-color: white;
+            color: #fd405e;
+            padding: 10px 20px;
+        }
+        .acart:hover{
+            background-color: #fd405e;
+            color: white;
+            padding: 10px 20px;
+        }
+        .size{
+          border: 1px solid black;
+          padding: 0px 15px;
+        }
+        .size:hover{
+          border: 1px solid black;
+          padding: 0px 15px;
+          color: #fd405e;
+        }
+        .size.selected{
+          color: #fd405e;
+          border: 1px solid #fd405e;
+        }
+
+
+
+
+    </style>
+    <style media="screen">
+		.cur-selection{
+			background-color:#FD405E;
+			color:white;
+		}
+		.cur-selection:hover{
+			background-color:#FD405E;
+			color:white;
+		}
+	</style>
+    <section id="breadcrumbRow" class="row">
+        <h2>single product</h2>
+        <div class="row pageTitle m0">
+            <div class="container">
+                <h4 class="fleft">single product</h4>
+                <ul class="breadcrumb fright">
+                    <li><a href="index.html">home</a></li>
+                    <li class="active">single product</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <section class="row contentRowPad">
+        <div class="container">
+            <div class="row singleProduct">
+                <div class="col-sm-7">
+                  <div class="row m0 flexslider" id="mySlider">
+                        <ul class="slides">
+                          <li>
+								             <img src="{{ object.image.url }}" alt="{{ object.title }}">
+                          </li>
+                          {% for i in object.get_attachments %}
+                          {% if i|isVideo %}
+                          <li>
+								          <video width="520" height="540" controls>
+									         <source src={{i.media_attach.url}} type="video/mp4">
+      									   browser does not support the video tag.
+			          					</video>
+                    </li>
+                    {% elif i|isImage %}
+                    <li>
+								      <img src={{i.media_attach.url}} alt="IMG-PRODUCT">
+                      </li>
+                    {% else %}
+                    <li>
+                			<audio class="my-auto"controls>
+                        <source src={{i.media_attach.url}} type="audio/ogg">
+                        <source src={{i.media_attach.url}} type="audio/mpeg">
+                        Your browser does not support the audio element.
+                      </audio>
+                      </li>
+                    {% endif %}
+   					        {% endfor %}
+                    </ul>
+                    </div>
+                    <div class="row m0 flexslider" id="mySliderNav">
+                        <ul class="slides">
+                          <li>
+                             <img src="{{ object.image.url }}" alt="{{ object.title }}">
+                          </li>
+                          {% for i in object.get_attachments %}
+                          {% if i|isVideo %}
+                          <li><img src="{{ object.image.url }}" alt="{{ object.title }}">
+                        </li>
+                        {% elif i|isImage %}
+                        <li>
+                        <img src={{i.media_attach.url}} alt="IMG-PRODUCT">
+                        </li>
+                        {% else %}
+
+                            <li><img src="{{ object.image.url }}" alt="{{ object.title }}"></li>
+                            {% endif %}
+                            {% endfor %}
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="col-sm-5">
+                    <div class="row m0">
+                        <h4 class="heading">{{object.title}}</h4>
+                        <h3 class="heading price" style="color: #fd405e;">
+                          {% if object.discount_price %}
+                          <del>Rs.{{ object.price }}</del>
+                          Rs.<span id="discount_price_tag">{{ object.discount_price }}</span>
+                        {% else %}
+                           Rs.<span id="price_tag">{{object.price}}</span>
+                        {% endif %}</h3>
+                        <!-- <div class="row m0 starsRow">
+                            <div class="stars fleft">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star-half-empty"></i>
+                            </div>
+                            <div class="fleft">
+                                5 Review(s) <span>|</span> <a href="#">Add Your Review</a>
+                            </div>
+                        </div> -->
+                        <div class="row descList m0">
+                            <dl class="dl-horizontal">
+                                <dt>availability :</dt>
+                                <dd>In Stock {{object.stock_no}} Item(s)</dd>
+                                <dt>product code :</dt>
+                                <dd>Xuo15</dd>
+                            </dl>
+                        </div>
+                        <div class="row m0 shortDesc">
+                            <p class="m0">{{object.description_short|safe}} </p>
+                        </div>
+                        {% for varitem in var_list%}
+                        <div class="row m0">
+                            <h5 class="heading proAttr">{{varitem}} :
+                            {%for k, i in var_value.items %}
+                            {%if k is varitem%}
+                            {% for j in i%}
+                            <label class="size my-label" id={{forloop.counter}} value={{j}}>{{j}}</label>
+                            {% endfor %}
+                            {% endif %}
+                            {%endfor%}
+                          </h5>
+
+                        </div>
+
+
+
+
+                        </div>
+                        {% endfor %}
+                        <!-- <div class="row m0">
+                            <ul class="list-inline wce">
+                                <li><a href="#"><i class="far fa-heart"></i>Add to Wishlist</a></li>
+                                <li><a href="#"><i class="fas fa-shopping-cart-alt"></i>Add to Compare</a></li>
+                                <li><a href="#"><i class="fas fa-envelope"></i>Email to a Friend</a></li>
+                            </ul>
+                        </div> -->
+                        <div class="row m0 qtyAtc">
+                            <div class="fleft quantity">
+                                <div class="fleft">QUANTITY <span>=</span></div>
+                                <div class="input-group spinner">
+                                    <div style="font-weight: normal;color:black;display:flex;" class="product-quantity">
+        <!-- <a href="/remove-single-from-cart/80/"><i class="fa fa-minus mr-3"></i></a><input class="size8 m-text18 t-center num-product" type="number" name="num" id="qtNum" value="1">
+      <a href="/add-single-to-cart/80/"><i class="fa fa-plus ml-3"></i></a> -->
+      <a class="quantity-left-minus ">
+        <i class="fa fa-minus mr-3"></i>
+      </a>
+      <input type="text" id="quantity" name="quantity" class="form-control input-number " value="1" style="width:50%">
+      <a class="quantity-right-plus ">
+        <i class="fa fa-plus ml-3"></i>
+      </a>
+
+      </div>
+                                </div>
+                            </div>
+                        </div>
+                            <a  href= {% url 'core:add-pri-to-cart' object.slug 1 %} id="add_to_cart_link" class="fleft acart"><i class="fas fa-shopping-cart"></i> Add to cart</a>
+                    </div>
+                </div>
+            </div>
+ {% if messages %}
+                    {% for message in messages %}
+                    {% if message.tags == "error" %}
+                      <div class="alert alert-danger alert-dismissible mx-auto" role="alert">
+                    {% else %}
+                      <div class=" alert alert-{{message.tags}} alert-dismissible mx-auto" role="alert">
+                    {% endif %}
+                      <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                      </button>
+                      {{ message }}
+                    </div>
+                    {% endfor %}
+                {% endif %}
+
+            <div class="row shortcodesRow m0">
+                <div class="row sectionTitle">
+                    <h3>latest products</h3>
+                    <h5>know more about our latest collection</h5>
+                </div>
+
+                <a href="single-product.html">
+                <div class="col-sm-4 product2">
+                    <div class="row m0 thumbnail">
+                        <div class="row m0 imgHov">
+                            <img src="{% static 'images/product/pro2p/1.png' %}" alt="">
+                        </div>
+                        <div class="row m0 productIntro">
+                            <h5 class="heading"><a href="single-product.html">Maximus quam posuere</a> <span><del>Rs.240</del> Rs.180</span></h5>
+                            <h5 class="proCat">Ring</h5>
+                            <a href="#" class="fleft acart"><i class="fas fa-shopping-cart"></i> Add to cart</a>
+                        </div>
+                    </div>
+                </div></a>
+                <a href="single-product.html">
+                <div class="col-sm-4 product2">
+                    <div class="row m0 thumbnail">
+                        <div class="row m0 imgHov">
+                            <img src="{% static 'images/product/pro2p/1.png' %}" alt="">
+                        </div>
+                        <div class="row m0 productIntro">
+                            <h5 class="heading"><a href="single-product.html">Maximus quam posuere</a> <span><del>Rs.240</del> Rs.180</span></h5>
+                            <h5 class="proCat">Ring</h5>
+                            <a href="#" class="fleft acart"><i class="fas fa-shopping-cart"></i> Add to cart</a>
+                        </div>
+                    </div>
+                </div></a>
+                <a href="single-product.html">
+                <div class="col-sm-4 product2">
+                    <div class="row m0 thumbnail">
+                        <div class="row m0 imgHov">
+                            <img src="{% static 'images/product/pro2p/1.png' %}" alt="">
+                        </div>
+                        <div class="row m0 productIntro">
+                            <h5 class="heading"><a href="single-product.html">Maximus quam posuere</a> <span><del>Rs.240</del> Rs.180</span></h5>
+                            <h5 class="proCat">Ring</h5>
+                            <a href="#" class="fleft acart"><i class="fas fa-shopping-cart"></i> Add to cart</a>
+                        </div>
+                    </div>
+                </div></a>
+
+            </div>
+
+
+    </section>
+  {% include 'footer.html' %}
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/flexslider/2.7.0/flexslider.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/flexslider/2.7.0/jquery.flexslider.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.js" integrity="sha512-XtmMtDEcNz2j7ekrtHvOVR4iwwaD6o/FUJe6+Zq+HgcCsk3kj4uSQQR8weQ2QVj1o0Pk6PwYLohm206ZzNfubg==" crossorigin="anonymous"></script>
+  <script>
+
+  $('#mySliderNav').flexslider({
+      animation: "slide",
+      controlNav: false,
+      animationLoop: false,
+      directionNav: true,
+      slideshow: false,
+      itemWidth: 130,
+      itemMargin: 10,
+      asNavFor: '#mySlider',
+      prevText: '<i class="fas fa-angle-left"></i>',
+      nextText: '<i class="fas fa-angle-right"></i>',
+  });
+
+  $('#mySlider').flexslider({
+      animation: "slide",
+      controlNav: false,
+      animationLoop: false,
+      directionNav: false,
+      slideshow: false,
+      sync: "#mySliderNav"
+  });
+
+
+
+
+
+
+
+  let qt_num=1;
+  let slug = '{{slug}}'
+  let product = slug[0].toUpperCase() + slug.slice(1);
+  $(document).ready(function(){
+      var quantitiy=0;
+
+      $('.quantity-right-plus').click(function(e){
+        console.log("in plus");
+        e.preventDefault();
+        var quantity = parseInt($('#quantity').val());
+      $('#quantity').val(quantity + 1);
+      setTimeout(()=>{
+        handlebtnClick()
+      }, 10);
+      });
+
+      $('.quantity-left-minus').click(function(e){
+        console.log("in minus");
+
+        e.preventDefault();
+        var quantity = parseInt($('#quantity').val());
+        if(quantity>1){
+        $('#quantity').val(quantity - 1);
+        setTimeout(()=>{
+          handlebtnClick()
+        }, 10);
+        }
+      });
+
+  });
+
+  function handleClick(e){
+
+    if(e == undefined){
+      e = document.getElementsByClassName('cur-selection');
+      if(e.length === 0){
+        handlepri();
+        return ;
+      } else{ e = e[0];}
+    }
+
+    let value = e.innerText
+    console.log(e.innerText);
+    let slug = '{{slug}}';
+    let response = fetch(`/get-details/${slug}/${value}`)
+                   .then(res => res.json())
+                   .then(r => {
+                     if(r.has_data){
+                       try{
+                         document.getElementById('price_tag').innerText = r.price;
+                       }
+                       catch(e){
+                         document.getElementById('discount_price_tag').innerText = r.price;
+                     }
+                     document.getElementById('add_to_cart_link').href = `/add-to-cart/${r.id}/${qt_num}/${value}/`;
+                     }
+                   })
+
+
+  }
+
+
+  $('.my-label').click((e)=>{
+    if(e.currentTarget.classList.contains('cur-selection')){
+      e.currentTarget.classList.remove('cur-selection');
+      handlepri();
+      return
+    }
+    labels = document.getElementsByClassName('my-label')
+    if(labels){
+    for(i=0;i<labels.length;i++){
+      if(labels[i].classList.contains('cur-selection')){
+          labels[i].classList.remove('cur-selection')
+      }
+    }
+  }
+    e.currentTarget.classList.add('cur-selection');
+
+    let value = e.currentTarget.innerText
+    console.log(e.currentTarget.innerText);
+    let slug = '{{slug}}';
+    let response = fetch(`/get-details/${slug}/${value}`)
+                   .then(res => res.json())
+                   .then(r => {
+                     if(r.has_data){
+                       try{
+                         document.getElementById('price_tag').innerText = r.price;
+                       }
+                       catch(e){
+                         document.getElementById('discount_price_tag').innerText = r.price;
+                     }
+                     document.getElementById('add_to_cart_link').href = `/add-to-cart/${r.id}/${qt_num}/${value}/`;
+                     }
+                   })
+
+
+  })
+
+
+  window.onload = function(){
+
+    let var_dict_in = '{{var_value|escapejs}}'
+    if(var_dict_in === '{}'){handleNoVar();}
+    document.getElementById('quantity').value = 1;
+  };
+
+  function handlebtnClick(){
+    setTimeout(()=>{
+
+      qt_num = document.getElementById('quantity').value
+      let var_dict_out = '{{var_value|escapejs}}'
+
+      if(var_dict_out === '{}'){handleNoVar();}
+      else{handleClick();}
+
+    }, 10)
+  }
+
+  function handlepri(){
+    let slug = '{{slug}}'
+    let product = slug[0].toUpperCase() + slug.slice(1);
+    let in_price = '{{object.price}}'
+    let in_discountprice = '{{object.discount_price }}'
+
+    try{
+      document.getElementById('price_tag').innerText = in_price;
+    }
+    catch(e){
+      document.getElementById('discount_price_tag').innerText = in_discountprice;
+    }
+
+    document.getElementById('add_to_cart_link').href = `/add-pri-to-cart/${slug}/${qt_num}/`;
+    // document.getElementById('add_to_wish_link').href = `/add-pri-to-wish/${slug}/${qt_num}/`;
+  }
+
+  function handleNoVar(){
+    let slug = '{{slug}}'
+    product = slug[0].toUpperCase() + slug.slice(1);
+    let id = '{{object.id}}'
+    document.getElementById('add_to_cart_link').href = `/add-to-cart/${id}/${qt_num}/0/`;
+    // document.getElementById('add_to_wish_link').href = `/add-to-wish/${product}/${qt_num}/`;
+  }
+  </script>
+</body>
+<!-- <script src="//code.jquery.com/jquery-1.11.1.min.js"></script> -->
+
+</html>

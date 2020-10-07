@@ -1,0 +1,275 @@
+{% load static %}
+{% load slide_template_tags %}
+{% load cart_template_tags %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+      <meta charset="UTF-8">
+      <meta http-equiv="X-UA-Compatible" content="IE=edge">
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+      <title>D-Shine- Jewellery, Diamond Business/shop Template</title>
+        {% include 'nav.html' %}
+
+
+<body>
+      <section id="slider" class="row">
+         <div class="row sliderCont flexslider m0">
+            <ul class="slides nav">
+              {% for i in Slide %}
+               <li>
+                  <img src="{{ i.image.url }}" alt="">
+                  <div class="text_lines row m0">
+                     <div class="container p0 text-right">
+                        <h3 style="color: white;">{{i.caption1}}</h3>
+                        <h2>{{i.caption2}}</h2>
+                        <h4><a class="theme_btn with_i" href={{i.link}}><i class="fas fa-plus-circle"></i>Shop now</a></h4>
+                     </div>
+                  </div>
+{% endfor %}
+            </ul>
+         </div>
+      </section>
+      <!--Slider-->
+       {% if messages %}
+                    {% for message in messages %}
+                    {% if message.tags == "error" %}
+                      <div class="alert alert-danger alert-dismissible mx-auto" role="alert">
+                    {% else %}
+                      <div class=" alert alert-{{message.tags}} alert-dismissible mx-auto" role="alert">
+                    {% endif %}
+                      <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                      </button>
+                      {{ message }}
+                    </div>
+                    {% endfor %}
+                {% endif %}
+
+      <section id="shopRings">
+         <div class="sectionTitle">
+            <h3>New arrivels</h3>
+            <h5>know more about our latest collection</h5>
+         </div>
+         <div class="d-carousel-cener owl-carousel">
+            <div class="dc-inner">
+               <a href={% url "core:menu_view" 0%}>
+                  <img alt="ring" src="{% static 'images/carousel/1.png' %}" >
+                  <div class="dc-containt">
+                     <h2>Cushion</h2>
+                     <p>Bar Set Anniversary Ring</p>
+                  </div>
+               </a>
+            </div>
+            <div class="dc-inner">
+               <a href={% url "core:menu_view" 0%}>
+                  <img alt="ring" src="{% static 'images/carousel/2.png' %}" >
+                  <div class="dc-containt">
+                     <h2>Round</h2>
+                     <p>Bar Set Anniversary Ring</p>
+                  </div>
+               </a>
+            </div>
+            <!-- <div class="dc-inner">
+               <a href="single-product2.html">
+                  <img alt="ring" src="{% static 'images/carousel/2.png' %}" >
+                  <div class="dc-containt">
+                     <h2>Round</h2>
+                     <p>Bar Set Anniversary Ring</p>
+                  </div>
+               </a>
+            </div>
+            <div class="dc-inner">
+               <a href="single-product2.html">
+                  <img alt="ring" src="{% static 'images/carousel/3.png' %}" >
+                  <div class="dc-containt">
+                     <h2>Pear</h2>
+                     <p>Bar Set Anniversary Ring</p>
+                  </div>
+               </a>
+            </div>
+            <div class="dc-inner">
+               <a href="single-product2.html">
+                  <img alt="ring" src="{% static 'images/carousel/4.png' %}" >
+                  <div class="dc-containt">
+                     <h2>Radiant</h2>
+                     <p>Bar Set Anniversary Ring</p>
+                  </div>
+               </a>
+            </div>
+            <div class="dc-inner">
+               <a href="single-product2.html">
+                  <img alt="ring" src="{% static 'images/carousel/5.png' %}" >
+                  <div class="dc-containt">
+                     <h2>Ovel</h2>
+                     <p>Bar Set Anniversary Ring</p>
+                  </div>
+               </a>
+            </div> -->
+         </div>
+      </section>
+      <section id="ring_sec" class="ring_sec">
+         <div id="trigger" class="container ">
+            <div class="row">
+               <div class="col-md-6  diamond_j_cont">
+                  <div  class="diamond_j">
+                  </div>
+                  <div class="diamond_b">
+                     <img alt="" class="img-responsive"  src="{% static 'images/ring.png' %}">
+                  </div>
+               </div>
+               <div   class="col-md-6  ring_cont">
+                  <h2>About D-shine</h2>
+                  <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. In pellentesque, diam viverra lacinia sodales, elit turpis consequat sapien, nec feugiat ex urna quis libero. Sed vel purus iaculis, lobortis neque vel, commodo enim. Quisque sollicitudin arcu ullamcorper libero consectetur commodo. </p>
+                  <p>
+                     lobortis neque vel, commodo enim!
+                  </p>
+                  <a  class="com_btn" href={% url "core:menu_view" 0 %}>Start shopping</a>
+               </div>
+            </div>
+         </div>
+      </section>
+      <section id="shopFeatures_new">
+         <div class=" shopFeatures_new container">
+            <ul>
+               <li class="sf_first">
+                  <img alt="" class="img-responsive"  src="{% static 'images/feature/1.jpg' %}">
+                  <div class="sf_box">
+                     <div class="sf_box_inner">
+                        <h2>free shipping</h2>
+                        <h3>on orders over $299</h3>
+                        <p>This offer is valid on all our store items</p>
+                     </div>
+                  </div>
+               </li>
+               <li>
+                  <a href={% url "core:menu_view" 0 %}>
+                     <img alt="" class="img-responsive"  src="{% static 'images/feature/2.jpg' %}">
+                     <div class="sf_box">
+                        <div class="sf_box_inner">
+                           <h3>shop & save</h3>
+                           <p>On all our store items</p>
+                        </div>
+                     </div>
+                  </a>
+               </li>
+               <li>
+                  <a href={% url "core:menu_view" 0 %}>
+                     <img alt="" class="img-responsive"  src="{% static 'images/feature/3.jpg' %}">
+                     <div class="sf_box">
+                        <div class="sf_box_inner">
+                           <h3>Product catalog</h3>
+                        </div>
+                     </div>
+                  </a>
+               </li>
+               <li>
+                  <a href={% url "core:menu_view" 0 %}>
+                     <img alt="" class="img-responsive"  src="{% static 'images/feature/4.jpg' %}">
+                     <div class="sf_box">
+                        <div class="sf_box_inner">
+                           <h3>product list</h3>
+                           <p>Lorem ipsum dolor sit amet</p>
+                        </div>
+                     </div>
+                  </a>
+               </li>
+            </ul>
+         </div>
+      </section>
+      <section id="featureProducts" class="row contentRowPad">
+         <div class="container">
+            <div class="row sectionTitle">
+               <h3>featured products</h3>
+               <h5>know more about our latest collection</h5>
+            </div>
+            <div class="row">
+              {% for item in featuredProducts %}
+                {% if forloop.counter < 4 %}
+               <a href={% url "core:product" item.slug %}>
+                <div class="col-sm-4 product2">
+                    <div class="row m0 thumbnail">
+                        <div class="row m0 imgHov">
+                            <img src={{item.image.url}} alt="">
+                        </div>
+                        <div class="row m0 productIntro">
+                            <h5 class="heading"><a href="single-product.html">{{item.title}}</a> {% if object.discount_price %}
+                            <del>Rs.{{ object.price }}</del>
+                            Rs.<span id="discount_price_tag">{{ object.discount_price }}</span>
+                          {% else %}
+                             Rs.<span id="price_tag">{{object.price}}</span>
+                          {% endif %}</h5>
+                            <h5 class="proCat">Ring</h5>
+                            <a href={% url "core:add-pri-to-cart" item.slug 1 %} class="fleft acart"><i class="fas fa-shopping-cart"></i> Add to cart</a>
+                        </div>
+                    </div>
+                </div></a>
+                {% endif %}
+                {% endfor %}
+                <!-- <a href="single-product.html">
+                <div class="col-sm-4 product2">
+                    <div class="row m0 thumbnail">
+                        <div class="row m0 imgHov">
+                            <img src="{% static 'images/product/pro2p/1.png' %}" alt="">
+                        </div>
+                        <div class="row m0 productIntro">
+                            <h5 class="heading"><a href="single-product.html">Maximus quam posuere</a> <span><del>Rs.240</del> Rs.180</span></h5>
+                            <h5 class="proCat">Ring</h5>
+                            <a href="#" class="fleft acart"><i class="fas fa-shopping-cart"></i> Add to cart</a>
+                        </div>
+                    </div>
+                </div></a>
+                <a href="single-product.html">
+                <div class="col-sm-4 product2">
+                    <div class="row m0 thumbnail">
+                        <div class="row m0 imgHov">
+                            <img src="{% static 'images/product/pro2p/1.png' %}" alt="">
+                        </div>
+                        <div class="row m0 productIntro">
+                            <h5 class="heading"><a href="single-product.html">Maximus quam posuere</a> <span><del>Rs.240</del> Rs.180</span></h5>
+                            <h5 class="proCat">Ring</h5>
+                            <a href="#" class="fleft acart"><i class="fas fa-shopping-cart"></i> Add to cart</a>
+                        </div>
+                    </div>
+                </div></a> -->
+            </div>
+         </div>
+      </section>
+      <!--Feature Products 4 Collumn-->
+      <section id="featureCategory" class="row contentRowPad">
+         <div class="container">
+            <div class="row m0 sectionTitle">
+               <h3>our featured categories</h3>
+               <h5>make easy shop with our categories</h5>
+            </div>
+            <div class="owl-carousel featureCats row m0">
+            {% for item in category %}
+               <div class="item">
+                  <div class="row m0 imgHov">
+                     <img src={{item.image.url}} alt="">
+                     <div class="row m0 hovArea">
+                        <i class="fas fa-heart-o"></i><br>
+                        <h4>{{item.id|category_count}}</h4>
+                        <a href={% url "core:menu_view" item.title %}>shop now</a>
+                     </div>
+                  </div>
+                  <div class="cat_h">
+                     <a href={% url "core:menu_view" item.title %}>
+                        <h4>{{item.title}}</h4>
+                        <span>See the Collection</span>
+                     </a>
+                  </div>
+               </div>
+               {% endfor %}
+               
+            </div>
+         </div>
+      </section>
+
+{% include 'footer.html' %}
+
+
+   </body>
+
+
+</html>

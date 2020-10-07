@@ -1,0 +1,334 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+   
+<!-- Mirrored from veepixel.com/tf/html/d-shine/index.html by HTTrack Website Copier/3.x [XR&CO'2014], Sun, 06 Sep 2020 10:33:41 GMT -->
+<head>
+      <meta charset="UTF-8">
+      <meta http-equiv="X-UA-Compatible" content="IE=edge">
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+      <title>D-Shine- Jewellery, Diamond Business/shop Template</title>
+      <!--Favicons-->
+{% include 'nav.html' %}
+<link rel="stylesheet" href="{% static 'table.css' %}">
+
+ <style type="text/css">
+
+        .offers_navbtn.mcart{
+            border: 2px solid #fd405e;
+            border-radius: 30px;
+            padding: 10px;
+            font-size: 10px;
+            display: none;
+         }
+
+         .offers_navbtn.dcart{
+            display: block;
+         }
+
+@media (max-width: 767px){
+   .offers_navbtn.dcart{
+            display: none;
+         }
+   .offers_navbtn.mcart{
+      display: block;
+   }
+}
+
+         
+         .h_cart{
+            float: right;
+            display: block;
+         }
+
+         .mcart{
+            display: none;
+         }
+
+         @media screen and (max-width: 991px){
+            .h_cart{
+            display: none;
+         }
+         .mcart{
+            display: block;
+            float: left;
+         }
+         }
+
+.info-box {
+  display: block;
+  min-height: 90px;
+  background: #fff;
+  width: 100%;
+  box-shadow: 0 1px 1px rgba(0,0,0,0.1);
+  border-radius: 2px;
+  margin-bottom: 15px;
+  border: 3px solid #4dc0ef;
+}
+.warning-box{
+display: block;
+  min-height: 90px;
+  background: #fff;
+  width: 100%;
+  box-shadow: 0 1px 1px rgba(0,0,0,0.1);
+  border-radius: 2px;
+  margin-bottom: 15px;
+  border: 3px solid #ff9800;
+}
+.bg-aqua, .callout.callout-info, .alert-info, .label-info, .modal-info .modal-body {
+  background-color: #00c0ef !important;
+  color: #fff !important;
+}
+.bg-warning{background-color: #ff9800 !important;
+  color: #fff !important;}
+.info-box-content {
+  padding: 5px 10px;
+  margin-left: 90px;
+}
+.info-box-icon {
+  border-top-left-radius: 2px;
+  border-top-right-radius: 0;
+  border-bottom-right-radius: 0;
+  border-bottom-left-radius: 2px;
+  display: block;
+  float: left;
+  height: 87px;
+  width: 90px;
+  text-align: center;
+  font-size: 45px;
+  line-height: 90px;
+  background: rgba(0,0,0,0.2);
+}
+.info-box-text {
+  display: block;
+  font-size: 24px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.info-box-number {
+  display: block;
+  font-weight: bold;
+  font-size: 28px;
+}
+.fa {
+  display: inline-block;
+  font: normal normal normal 14px/1 FontAwesome;
+  font-size: inherit;
+  text-rendering: auto;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+.delivered{
+    color: green;
+    border-color: green;
+    margin-bottom: 10px;
+  }
+  .delivered:hover{
+    color: white;
+    border-color: green;
+    background-color: green;
+  }
+  .cancle{
+    color: red;
+    border-color: red;
+    padding-left: 20px;
+    padding-right: 20px; 
+  }
+  .cancle:hover{
+    color: white;
+    border-color: red;
+    background-color: red;
+  }
+
+
+      </style>
+     
+
+     <!-- <div class="row" style="margin: 15px;">
+       <div class="col-lg-3 col-md-6 col-sm-12">
+         <div class="div1">
+         10<br>
+         oijuhgfd
+         <p style="float: right;display: flex;align-items: center;justify-content: center;text-align: center;">vbhnjmk,l.</p>
+         </div>
+       </div>
+       <div class="col-lg-3 col-md-6 col-sm-12">
+         <div class="div2">
+           dfghjk
+         </div>
+       </div>
+       <div class="col-lg-3 col-md-6 col-sm-12">
+         <div class="div3">
+           dfghjk
+         </div>
+       </div>
+       <div class="col-lg-3 col-md-6 col-sm-12">
+         <div class="div4">
+           dfghjk
+         </div>
+       </div>
+     </div> -->
+<div class="container" style="margin-top: 50px;width: 100%;">
+     <div class="row">
+ 
+  <div class="col-lg-4 col-md-6 col-sm-12">
+    <div class="info-box">
+        <span class="info-box-icon bg-aqua"><i class="fa fa-user"></i></span>
+        <div class="info-box-content">
+            <span class="info-box-text">Total Orders</span>
+            <span class="info-box-number">{{totalOrders}}</span>
+        </div>
+    </div>
+</div>
+<div class="col-lg-4 col-md-6 col-sm-12">
+  <div class="warning-box">
+      <span class="info-box-icon bg-warning"><i class="fa fa-user"></i></span>
+      <div class="info-box-content">
+          <span class="info-box-text">Orders Pending</span>
+          <span class="info-box-number">{{ordersPending}}</span>
+      </div>
+  </div>
+</div>
+<div class="col-lg-4 col-md-6 col-sm-12">
+  <div class="warning-box">
+      <span class="info-box-icon bg-warning"><i class="fa fa-user"></i></span>
+      <div class="info-box-content">
+          <span class="info-box-text">Orders Accepted</span>
+          <span class="info-box-number">{{ordersAccepted}}</span>
+      </div>
+  </div>
+</div>
+</div>
+</div>
+
+
+   <div class="container" style="margin-top: 20px;width: 100%;">
+   <div class="row">
+ 
+  <div class="col-lg-4 col-md-6 col-sm-12">
+    <div class="info-box">
+        <span class="info-box-icon bg-aqua"><i class="fa fa-user"></i></span>
+        <div class="info-box-content">
+            <span class="info-box-text">Orders Cancelled</span>
+            <span class="info-box-number">{{ordersCancelled}}</span>
+        </div>
+    </div>
+</div>
+<div class="col-lg-4 col-md-6 col-sm-12">
+  <div class="warning-box">
+      <span class="info-box-icon bg-warning"><i class="fa fa-user"></i></span>
+      <div class="info-box-content">
+          <span class="info-box-text">Orders Delivered</span>
+          <span class="info-box-number">{{ordersDelivered}}</span>
+      </div>
+  </div>
+</div>
+</div>
+</div>
+
+<table id="content-table3" class="table-responsive-full sort-table" style="padding:1em;">
+  <thead>
+    <tr>
+      <th class="title">Order Id
+        <div class="sort-table-arrows">
+          <a href="javascript:sort(true, 'title', 'content-table3');"><button class="button" title="Αύξουσα ταξινόμηση"><i class="fa fa-chevron-down"></i></button></a>
+          <a href="javascript:sort(false, 'title', 'content-table3');"><button class="button" title="Φθίνουσα ταξινόμηση"><i class="fa fa-chevron-up"></i></button></a>
+        </div>
+      </th>
+      <th class="title">Name
+      </th>
+      <th class="composer">Address
+      </th>
+      <th class="lyrics">Ordered Items
+      </th>
+      <th class="set">Special Requirements
+      </th>
+      <th class="arranger">Price</th>
+      <th class="decision">Decision</th>
+      <!-- <th class="arranger">Arranger / Editing</th> -->
+    </tr>
+  </thead>
+  <tbody>
+    {% for item in orders %}
+    <tr>
+      <td data-label="Order Id" class="title" class="title">Order Id: {{item.id}}</td>
+      <td data-label="Customer Details" class="composer"><b>Customer Name:</b><br>{{item.billing_address.fname}}, {{item.billing_address.lname}}<br><b>Contact Details:<br>Mob No: {{item.number}}<br>Email-Id: {{item.billing_address.email}}<br>Ordered Before: {{item.ordered_date |timesince}}<br>Ordered Date: {{item.ordered_date |date}}</td>
+      <td data-label="Address" class="lyrics"><b>Apartment Address :</b>{{item.billing_address.apartment_address}}<br><b>Street Address1 :</b>{{item.billing_address.street_address}}<br> {% if item.billing_address.address %}<b>Street Address2 :</b>{{item.billing_address.address}}<br>
+        {% endif %}<b>City :</b>{{item.billing_address.city}}<br><b>State :</b>{{item.billing_address.state}}<br><b>Postal / Zip Code :</b>{{item.billing_address.zip}}</td>
+         <td data-label="Ordered Items" >{% for i in item.items.all %} <p>{{forloop.counter}}).{{i.item.variationName}},{% endfor %}</td>
+        <td data-label="Special Requirements">{{item.special_instructions}}</td>
+      <td data-label="Price" class="set"><b>Sub Price:</b> Rs.{{item.get_total}}<br><b>Tax:</b>Rs.{{item.tax}}<br><b>Total Price: Rs.{{item.totalPrice}}<br><b>Payment Option:</b><br>Online</td>
+      <td data-label="decision" class="set">
+        {% if item.order_placed == False %}
+        {% if item.order_rejected == False %}
+
+         <a href={% url "core:accept_order" item.id %}><button class="delivered"><i class="fa fa-check" aria-hidden="true">Accept</i></button></a>
+
+         {% endif %}
+        {% endif %}
+        {% if item.being_delivered == False %}
+        {% if item.order_placed == True %}
+
+         <a href={% url "core:delivered_order" item.id %}><button class="delivered"><i class="fa fa-check" aria-hidden="true">Delivered</i></button></a><br>
+        {% endif %}
+        {% endif %}
+        {% if item.order_rejected == False %}
+        {% if item.order_placed == False %}
+
+        <a href={% url "core:decline_order" item.id %}><button class="cancle"><i class="fa fa-times" aria-hidden="true"> Cancle</i></button></a>
+
+        {% endif %}
+        {% endif %}
+        {% if item.being_delivered == True %}<span class="badge badge--success badge--small">Completed</span>{% endif %}
+        {% if item.order_rejected == True %} <span class="badge badge--danger badge--small">Canceled</span>{% endif %}
+      </td>
+    </tr>
+    {% endfor %}
+    
+  </tbody>
+</table>
+
+<nav aria-label="Page navigation" >
+  <ul class="pagination" style="margin-left: 50%;transform: translate(-50%); color:#FF405E;">
+    {% if orders.has_previous %}
+       <li> <a class="page-item pagination-action" href="?page=1" tabindex="-1" id="myTab">
+            <i class="fa fa-angle-double-left" aria-hidden="true"></i> </a></li>
+       <li> <a class="page-item pagination-action"id="myTab" tabindex="-1" href="?page={{ orders.previous_page_number }}">
+            <i class="fa fa-angle-left" aria-hidden="true"></i>
+        </a></li>
+    {% endif %}
+    {% for num in orders.paginator.page_range %}
+        {% if orders.number == num %}
+           <li> <span class="page-item pagination-number pagination-current" id="myTab" tabindex="-1" style="background-color: #FF405E; color:white;">{{ num }}</span></li>
+        {% elif num > orders.number|add:'-3' and num < orders.number|add:'3' %}
+          <li>  <a class="page-item pagination-number"id="myTab" tabindex="-1"  href="?page={{ num }}">{{ num }}</a></li>
+        {% endif %}
+    {% endfor %}
+    {% if orders.has_next %}
+       <li> <a class="page-item pagination-action" id="myTab" tabindex="-1" href="?page={{ orders.next_page_number }}">
+            <i class="fa fa-angle-right"id="myTab" aria-hidden="true"></i>
+        </a></li>
+        <li><a class="page-item pagination-action"id="myTab" href="?page={{ orders.paginator.num_pages }}">
+            <i class="fa fa-angle-double-right" aria-hidden="true"></i>
+        </a></li>
+    {% endif %}
+  </ul>
+</nav>
+<style type="text/css">
+  #myTab{
+    color: #FF405E;
+    font-size: 15px;
+    font-style: bold;
+  }
+</style>
+{% include 'footer.html' %}
+  <script  src="table.js"></script>
+   </body>
+}
+
+
+</html>
+
+

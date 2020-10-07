@@ -1,0 +1,92 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+
+
+<head>
+      <meta charset="UTF-8">
+      <meta http-equiv="X-UA-Compatible" content="IE=edge">
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+      <title>D-Shine- Jewellery, Diamond Business/shop Template</title>
+     {% include 'nav.html' %}
+
+     <section id="contactRow" class="row contentRowPad">
+        <div class="container">
+            <div class="row">
+              <div class="col-sm-3"></div>
+                <div class="col-sm-6">
+                    <div class="row m0" style="text-align: center;">
+                        <h4 class="contactHeading heading" style="font-weight: bold;color: black;font-size: 25px;">Registration Form</h4>
+                    </div>
+                     {% if messages %}
+                    {% for message in messages %}
+                    {% if message.tags == "error" %}
+                      <div class="alert alert-danger alert-dismissible mx-auto" role="alert">
+                    {% else %}
+                      <div class=" alert alert-{{message.tags}} alert-dismissible mx-auto" role="alert">
+                    {% endif %}
+                      <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                      </button>
+                      {{ message }}
+                    </div>
+                    {% endfor %}
+                {% endif %}
+
+                    <div class="row m0 contactForm">
+                        <form class="row m0" id="contactForm" method="post" name="contact" action="/register/register_user/">
+                          {% csrf_token %}
+                            <div class="row">
+                                <div class="col-sm-6">
+                                    <label for="fname" style="font-weight: bold;color: black;font-size: 25px;">First Name </label>
+                                    <input type="text" class="form-control" name="fname" id="fname">
+                                </div>
+                                <div class="col-sm-6">
+                                    <label for="lname" style="font-weight: bold;color: black;font-size: 25px;">Last Name </label>
+                                    <input type="text" class="form-control" name="lname" id="lname">
+                                </div>
+                            </div>
+                           <div class="row m0">
+                                <label for="phone" style="font-weight: bold;color: black;font-size: 25px;">Phone No</label>
+                                <input type="tel" class="form-control" id="phone" name="phone" >
+                            </div>
+
+                            <div class="row m0">
+                                <label for="email" style="font-weight: bold;color: black;font-size: 25px;">Email -Id </label>
+                                <input type="email" class="form-control" name="email" id="email">
+                            </div>
+
+                            <div class="row m0">
+                                <label for="password" style="font-weight: bold;color: black;font-size: 25px;">Password</label>
+                                <input type="password" class="form-control" name="password" id="password">
+                            </div>
+                            <div class="row m0">
+                                <label for="cpassword" style="font-weight: bold;color: black;font-size: 25px;">Confirm Password</label>
+                                <input type="password" class="form-control" name="cpassword" id="cpassword">
+                            </div>
+
+                            <button class="btn btn-primary btn-lg filled" type="submit">Register</button>
+                        </form>
+                        <p>Already have an account?<a href="/login"> Login here.</a> </p>
+                        <div id="success">
+                                <span class="green textcenter">
+                                    Your message was sent successfully! I will be in touch as soon as I can.
+                                </span>
+                        </div>
+                        <div id="error">
+                            <span>
+                                Something went wrong, try refreshing and submitting the form again.
+                            </span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+     {% include 'footer.html' %}
+   </body>
+
+</html>

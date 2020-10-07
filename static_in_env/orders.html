@@ -1,0 +1,549 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+
+<!-- Mirrored from veepixel.com/tf/html/d-shine/index.html by HTTrack Website Copier/3.x [XR&CO'2014], Sun, 06 Sep 2020 10:33:41 GMT -->
+<head>
+      <meta charset="UTF-8">
+      <meta http-equiv="X-UA-Compatible" content="IE=edge">
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+      <title>D-Shine- Jewellery, Diamond Business/shop Template</title>
+      <!--Favicons-->
+      <link rel="icon" type="image/png" sizes="32x32" href="favicon/favicon-32x32.png">
+      <meta name="msapplication-TileColor" content="#ffffff">
+      <meta name="theme-color" content="#ffffff">
+      <!--Bootstrap and Other Vendors-->
+      <link rel="stylesheet" href="css/bootstrap.min.css">
+      <link rel="stylesheet" href="css/bootstrap-theme.min.css">
+      <link rel="stylesheet" href="css/fontawesome-all.min.css">
+      <link rel="stylesheet" href="vendors/owl.carousel/css/owl.carousel.min.css">
+
+      <link rel="stylesheet" type="text/css" href="vendors/flexslider/flexslider.css" media="screen" />
+      <link href="https://fonts.googleapis.com/css?family=PT+Sans:400,700" rel="stylesheet">
+      <link href="https://fonts.googleapis.com/css?family=Questrial" rel="stylesheet">
+      <!--Mechanic Styles-->
+      <link rel="stylesheet" href="css/style.css">
+      <link rel="stylesheet" href="css/responsive.css">
+
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/prefixfree/1.0.7/prefixfree.min.js"></script>
+<style type="text/css">
+
+.offers_navbtn.mcart{
+            border: 2px solid #fd405e;
+            border-radius: 30px;
+            padding: 10px;
+            font-size: 10px;
+            display: none;
+         }
+
+         .offers_navbtn.dcart{
+            display: block;
+         }
+
+@media (max-width: 767px){
+   .offers_navbtn.dcart{
+            display: none;
+         }
+   .offers_navbtn.mcart{
+      display: block;
+   }
+}
+
+
+  .multi-steps > li.is-active:before, .multi-steps > li.is-active ~ li:before {
+  content: counter(stepNum);
+  font-family: inherit;
+  font-weight: 700;
+}
+.multi-steps > li.is-active:after, .multi-steps > li.is-active ~ li:after {
+  background-color: #ededed;
+}
+
+.multi-steps {
+  display: table;
+  table-layout: fixed;
+  width: 100%;
+}
+.multi-steps > li {
+  counter-increment: stepNum;
+  text-align: center;
+  display: table-cell;
+  position: relative;
+  color: tomato;
+}
+.multi-steps > li:before {
+  content: '\f00c';
+  content: '\2713;';
+  content: '\10003';
+  content: '\10004';
+  content: '\2713';
+  display: block;
+  margin: 0 auto 4px;
+  background-color: #fff;
+  width: 36px;
+  height: 36px;
+  line-height: 32px;
+  text-align: center;
+  font-weight: bold;
+  border-width: 2px;
+  border-style: solid;
+  border-color: tomato;
+  border-radius: 50%;
+}
+
+.multi-steps > li.is-active1:before, .multi-steps > li.is-active1 ~ li:before {
+  content: '\2716';
+  font-family: inherit;
+  font-weight: 700;
+}
+
+.multi-steps > li:after {
+  content: '';
+  height: 2px;
+  width: 100%;
+  background-color: tomato;
+  position: absolute;
+  top: 16px;
+  left: 50%;
+  z-index: -1;
+}
+.multi-steps > li:last-child:after {
+  display: none;
+}
+.multi-steps > li.is-active:before {
+  background-color: #fff;
+  border-color: tomato;
+}
+.multi-steps > li.is-active ~ li {
+  color: #808080;
+}
+.multi-steps > li.is-active ~ li:before {
+  background-color: #ededed;
+  border-color: #ededed;
+}
+
+.shopping-cart{
+  display: none;
+}
+
+.shopping-cart.switched{
+  display: block;
+}
+
+.more{
+  display: block;
+}
+
+.more.switched{
+  display: none;
+}
+
+</style>
+      <!--[if lt IE 9]>
+      <script src="js/html5shiv.min.js"></script>
+      <script src="js/respond.min.js"></script>
+      <![endif]-->
+   </head>
+   <body>
+      <a href="#" id="back-to-top" title="Back to top">&uarr;</a>
+<header class="row" id="header">
+         <div class="row m0 logo_line">
+            <div class="container">
+               <div class="row">
+                  <div class="col-sm-5 logo">
+                     <a href="index.html" class="logo_a"><img src="images/dshine-logo.png" alt="D-shine">
+                     </a>
+                  </div>
+                  <div class="col-sm-7 searchSec">
+                     <div class="col-sm-12">
+                        <div class="fright wishlistCompare">
+                           <ul class="nav">
+                              <!-- <li>
+                                 <a href="#">
+                                 <span class="wish">
+                                 <i class="fas fa-heart"></i>
+                                 3
+                                 </span>
+                                 <span>Wishlist</span>
+                                 </a>
+                              </li> -->
+
+                           </ul>
+                        </div>
+                     </div>
+                     <div class="col-sm-12">
+                        <div class="fright searchForm">
+                           <form action="#" method="get">
+                              <div class="input-group">
+
+                     <p class="offers_navbtn mcart" ><a href="cart.html"><i class="fas fa-shopping-cart"></i>CART</a></p>
+                              </div>
+                           </form>
+                        </div>
+                     </div>
+                  </div>
+               </div>
+            </div>
+         </div>
+         <nav class="navbar navbar-default m0 navbar-static-top">
+            <div class="container-fluid container">
+               <!-- Brand and toggle get grouped for better mobile display -->
+               <div class="navbar-header">
+                  <button style="float: right;" type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#mainNav">
+                  <i class="fas fa-bars"></i> MENU
+                  </button>
+               </div>
+               <!-- Collect the nav links, forms, and other content for toggling -->
+               <div class="collapse navbar-collapse" id="mainNav">
+                  <ul class="nav navbar-nav">
+                     <li class="dropdown">
+                        <a href="index.html"  class="dropdown-toggle" role="button" aria-expanded="false">Home</a>
+
+                     </li>
+                     <!-- <li><a href="about.html">About</a></li>
+                     <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Pages</a>
+                        <ul class="dropdown-menu" role="menu">
+                           <li><a href="blog.html">Blog</a></li>
+                           <li><a href="single-post.html">Single Post</a></li>
+                           <li><a href="shortcodes.html">Shortcodes</a></li>
+                           <li><a href="innerpage-dark.html">Inner Page Dark</a></li>
+                           <li><a href="404.html">404</a></li>
+                        </ul>
+                     </li> -->
+                     <li class="dropdown megaMenu">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Categories</a>
+                        <ul class="dropdown-menu row m0" role="menu">
+                           <!-- <li class="listMenu">
+                              <div class="row listTitle">Jewelery &amp; sectionals</div>
+                              <ul class="nav megaInnerMenu">
+                                 <li><a href="#">wedding ring</a></li>
+                                 <li><a href="#">pendant</a></li>
+                                 <li><a href="#">nosering</a></li>
+                                 <li><a href="#">necklace</a></li>
+                                 <li><a href="#">medallion</a></li>
+                                 <li><a href="#">engagement ring</a></li>
+                                 <li><a href="#">costume jewellery</a></li>
+                                 <li><a href="#">brooch</a></li>
+                                 <li><a href="#">signet ring</a></li>
+                              </ul>
+                           </li> -->
+                           <li class="listMenu">
+                              <div class="row listTitle">shop by collections</div>
+                              <ul class="nav megaInnerMenu">
+                                 <li><a href="#">Ring</a></li>
+                                 <li><a href="#">Bracelet</a></li>
+                                 <li><a href="#">Bangle</a></li>
+                                 <li><a href="#">Link, Chain</a></li>
+                                 <li><a href="#">Stud</a></li>
+                                 <li><a href="#">Ear-Ring, Tops</a></li>
+                                 <li><a href="#">Brooch</a></li>
+                              </ul>
+                           </li>
+                           <li class="boxMenu">
+                              <div class="row listTitle">
+                                 shop by categories <a href="product.html">shop all <i class="fas fa-caret-right"></i></a>
+                              </div>
+                              <ul class="nav megaInnerMenu row m0">
+                                 <li>
+                                    <a href="product2.html">
+                                       <div class="row m0 imgHov">
+                                          <img src="images/menu/1.png" alt="">
+                                          <div class="row m0 hovCnt">
+                                             <div class="row m0 hovCntInner">
+                                                shop now <i class="fas fa-caret-right"></i>
+                                             </div>
+                                          </div>
+                                       </div>
+                                       <div class="row m0 menuTitle">Earrings</div>
+                                    </a>
+                                 </li>
+                                 <li>
+                                    <a href="product.html">
+                                       <div class="row m0 imgHov">
+                                          <img src="images/menu/2.png" alt="">
+                                          <div class="row m0 hovCnt">
+                                             <div class="row m0 hovCntInner">
+                                                shop now <i class="fas fa-caret-right"></i>
+                                             </div>
+                                          </div>
+                                       </div>
+                                       <div class="row m0 menuTitle">Brooch</div>
+                                    </a>
+                                 </li>
+                                 <li>
+                                    <a href="product2.html">
+                                       <div class="row m0 imgHov">
+                                          <img src="images/menu/3.png" alt="">
+                                          <div class="row m0 hovCnt">
+                                             <div class="row m0 hovCntInner">
+                                                shop now <i class="fas fa-caret-right"></i>
+                                             </div>
+                                          </div>
+                                       </div>
+                                       <div class="row m0 menuTitle">Necklace</div>
+                                    </a>
+                                 </li>
+                              </ul>
+                           </li>
+                        </ul>
+                     </li>
+
+                     <!-- <li><a href="#">Necklaces</a></li>
+                     <li><a href="blog.html">Blog</a></li> -->
+                     <li><a href="orders.html">My Orders</a></li>
+                     <li><a href={% url "core:login_view" %}>Login</a></li>
+                     <li><a href="register.html">Register</a></li>
+                     <li><a href="contact.html">Contact Us</a></li>
+                     <li class="offers_navbtn dcart"><a href="cart.html"><i class="fas fa-shopping-cart"></i>Cart</a></li>
+                  </ul>
+               </div>
+
+                <!-- <div class="h_cart">
+                                 <a href="cart.html">
+                                 <span class="wish">
+                                 <i class="fas fa-shopping-cart"></i>
+                                 2
+                                 </span>
+                                 <span>My cart</span>
+                                 </a>
+                              </div> -->
+               <!-- /.navbar-collapse -->
+            </div>
+            <!-- /.container-fluid -->
+         </nav>
+      </header> <!--Header-->
+
+          <div class="container" style="margin-top: 10px;">
+  <h3>Order ID: 1234567899</h3>
+  <h4>Ring</h4>
+  <h4>Price: 500rs</h4>
+  <div class="container-fluid">
+  <br /><br />
+  <ul class="list-unstyled multi-steps">
+    <li class="is-active">Ordered</li>
+    <li class="is-active">On the way</li>
+    <li class="is-active">Delivered</li>
+    <li class="is-active1">Canceld</li>
+  </ul>
+</div>
+<input class="more" type="button" name="read_more" value="read more" style="padding: 5px 15px;margin-bottom: 10px;margin-left: 50px;">
+
+<div style="margin-top: 20px;" class="container shopping-cart">
+
+    <section class="row contentRowPad">
+         <div class="container">
+            <div class=" cartPage">
+               <h3 class="heading pageHeading">Shopping cart</h3>
+               <div class="table-responsive cartTable row m0">
+                  <table class="table">
+                     <thead>
+                        <tr>
+                           <th class="productImage">Product image</th>
+                           <th class="productName">Product name</th>
+                           <th>price</th>
+                           <th>quantity</th>
+                           <th>total</th>
+                        </tr>
+                     </thead>
+                     <tbody>
+                        <tr class="alert" role="alert">
+                           <td class="productImage"><img src="images/product/single/l1.png" alt=""></td>
+                           <td class="productName">
+                              <h6 class="heading">dining table</h6>
+                              <div class="row descList m0">
+                                 <dl class="dl-horizontal">
+                                    <dt>product code :</dt>
+                                    <dd>Xuo15</dd>
+                                    <dt>size :</dt>
+                                    <dd>Queen</dd>
+                                 </dl>
+                              </div>
+                           </td>
+                           <td class="price">Rs.420</td>
+                           <td>
+                              <div class="input-group spinner" style="text-align: center;width: 100%;">
+                                 <p>2</p>
+                              </div>
+                           </td>
+                           <td class="price">Rs.840</td>
+                        </tr>
+                        <tr class="alert" role="alert">
+                           <td><img src="images/product/single/l3.png" alt=""></td>
+                           <td>
+                              <h6 class="heading">office furnitures</h6>
+                              <div class="row descList m0">
+                                 <dl class="dl-horizontal">
+                                    <dt>product code :</dt>
+                                    <dd>Xuo15</dd>
+                                    <dt>size :</dt>
+                                    <dd>Queen</dd>
+                                 </dl>
+                              </div>
+                           </td>
+                           <td class="price">Rs.420</td>
+                           <td>
+                              <div class="input-group spinner" style="text-align: center;width: 100%;">
+                                 <p>2</p>
+                              </div>
+                           </td>
+                           <td class="price">Rs.420</td>
+                        </tr>
+                     </tbody>
+                  </table>
+               </div>
+            </div>
+         </div>
+      </section>
+
+  <input class="less" type="button" name="read_more" value="read less" style="padding: 5px 15px;margin-bottom: 10px;">
+
+</div>
+<hr class="line1" style="border-top: 3px solid black;">
+
+
+</div>
+
+      <footer class="row">
+         <div class="row m0 topFooter">
+            <div class="container line1">
+               <div class="row footFeatures">
+                  <div class="col-sm-4 footFeature">
+                     <div class="media">
+                        <div class="media-left icon"><img src="images/icons/car3.png" alt=""></div>
+                        <div class="media-body texts">
+                           <h4>free shipping</h4>
+                           <h2>Pan-India</h2>
+                        </div>
+                     </div>
+                  </div>
+                  <div class="col-sm-4 footFeature">
+                     <div class="media m0">
+                        <div class="media-left icon"><img src="images/icons/tel24-7_2.png" alt=""></div>
+                        <div class="media-body texts">
+                           <h4>24 hours helpline</h4>
+                           <h2>+91 1414033674</h2>
+                        </div>
+                     </div>
+                  </div>
+                  <div class="col-sm-4 footFeature">
+                     <div class="media m0">
+                        <div class="media-left icon"><img src="images/icons/shopping-bag2.png" alt=""></div>
+                        <div class="media-body texts">
+                           <h4>see our</h4>
+                           <h2>latest Products</h2>
+                        </div>
+                     </div>
+                  </div>
+               </div>
+            </div>
+            <div class="container line2">
+               <div class="row">
+                  <div class="col-sm-6 widget">
+                     <div class="row m0">
+                        <h4>About Fine Jewellery</h4>
+                        <p>We provide the best Quality of products to you.We are always here to help our lovely customers.</p>
+                        <ul class="list-inline">
+                           <li><a href="https://m.facebook.com/pages/category/Jewelry-Watches/Fine-jewellery-by-vivek-ladha-353211878462736/"><i class="fab fa-facebook-f"></i></a></li>
+                           <li><a href="https://instagram.com/vivek_ladha?igshid=aawa60nkplmg"><i class="fab fa-instagram"></i></a></li>
+                        </ul>
+                     </div>
+                  </div>
+                <!--   <div class="col-sm-3 widget">
+                     <div class="row m0">
+                        <h4>information</h4>
+                        <ul class="nav">
+                           <li><a href="about.html">About Us</a></li>
+                           <li><a href="blog.html">Blog</a></li>
+                           <li><a href="#">Careers</a></li>
+                           <li><a href="#">Top Brands</a></li>
+                        </ul>
+                     </div>
+                  </div> -->
+                  <!-- <div class="col-sm-3 widget">
+                     <div class="row m0">
+                        <h4>top brands</h4>
+                        <ul class="nav">
+                           <li><a href="#">Fusce iaculis</a></li>
+                           <li><a href="#">Nisl dapibus</a></li>
+                           <li><a href="#">Vulputate sapien</a></li>
+                           <li><a href="#">Aliquet</a></li>
+                           <li><a href="#">Risus feugiat</a></li>
+                        </ul>
+                     </div>
+                  </div>
+ -->                  <div class="col-sm-6 widget">
+                     <div class="row m0">
+                        <h4>subscribe to our latest news</h4>
+                        <form action="http://veepixel.com/tf/html/d-shine/subscriptionList.php" method="post" role="form">
+                           <div class="input-group">
+                              <span class="input-group-addon"><i class="fas fa-envelope"></i></span>
+                              <input type="email" class="form-control" id="subscribeEmail" name="subscribeEmail" placeholder="EMAIL ADDRESS">
+                           </div>
+                           <input type="submit" class="form-control" value="Subscribe" id="submit" name="submit">
+                        </form>
+                     </div>
+                  </div>
+               </div>
+            </div>
+         </div>
+         <div class="row m0 copyRight">
+            <div class="container">
+               <div class="row">
+                  <div class="fleft">&copy; 2020 <a href="index.html">Fine Jewellery</a> All Rights Reserved.</div>
+                  <ul class="nav nav-pills fright">
+                     <li><a href="https://eeveno.com/developer.html">&copy; Developed by eeveno</a></li>
+                     <!-- <li><a href="about.html">about</a></li>
+                     <li><a href="blog.html">blog</a></li>
+                     <li><a href="contact.html">contact</a></li> -->
+                  </ul>
+               </div>
+            </div>
+         </div>
+      </footer>
+      <!--jQuery, Bootstrap and other vendor JS-->
+      <!--jQuery-->
+      <script src="js/jquery-2.1.3.min.js"></script>
+      <!--Google Maps-->
+      <script src="https://maps.googleapis.com/maps/api/js"></script>
+      <!--Bootstrap JS-->
+      <script src="js/bootstrap.min.js"></script>
+
+      <!--Owl Carousel-->
+      <script src="vendors/owl.carousel/js/owl.carousel.min.js"></script>
+      <!--Isotope-->
+      <script src="vendors/isotope/isotope-custom.js"></script>
+      <!--FlexSlider-->
+      <script src="vendors/flexslider/jquery.flexslider-min.js"></script>
+      <!--D-shine JS-->
+      <script src="js/d-shine.js"></script>
+      <script src="jquery-1.12.4.min.js"></script>
+      <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script><script  src="./cart.js"></script>
+  <script>
+(function($) { "use strict";
+
+    $(document).ready(function() {
+    $('body.hero-anime').removeClass('hero-anime');
+  });
+
+  //Switch light/dark
+
+  $(".more, .less").on('click', function () {
+    if ($("body").hasClass("dak")) {
+      $("body").removeClass("dak");
+      $(".shopping-cart, .more, .line").removeClass("switched");
+    }
+    else {
+      $("body").addClass("dak");
+      $(".shopping-cart, .more, .line").addClass("switched");
+    }
+  });
+
+  })(jQuery);
+
+</script>
+   </body>
+
+<!-- Mirrored from veepixel.com/tf/html/d-shine/index.html by HTTrack Website Copier/3.x [XR&CO'2014], Sun, 06 Sep 2020 10:39:22 GMT -->
+</html>
